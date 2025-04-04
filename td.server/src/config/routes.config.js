@@ -7,6 +7,8 @@ import googleProviderThreatmodelController from '../controllers/googleProviderTh
 import healthcheck from '../controllers/healthz.js';
 import homeController from '../controllers/homecontroller.js';
 import threatmodelController from '../controllers/threatmodelcontroller.js';
+import * as fileController from '../controllers/files.controller.js';
+
 
 /**
  * Routes that do **NOT** require authentication
@@ -25,6 +27,9 @@ const unauthRoutes = (router) => {
     router.get('/api/logout', auth.logout);
     router.get('/api/oauth/return', auth.oauthReturn);
     router.get('/api/oauth/:provider', auth.completeLogin);
+    router.get('/api/files/:filename', fileController.loadFile);
+    router.post('/api/files/:filename', fileController.saveFile);
+
 };
 
 /**
